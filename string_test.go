@@ -204,3 +204,25 @@ func assertJSONEquals(t *testing.T, data []byte, cmp string, from string) {
 		t.Errorf("bad %s data: %s ≠ %s\n", from, data, cmp)
 	}
 }
+
+func TestIsEmpty(t *testing.T) {
+	s := NewString("", true)
+	if IsEmptyString(s) != true {
+		t.Errorf("Expected %t to be true", IsEmptyString(s))
+	}
+
+	s2 := NewString("dfd", false)
+	if IsEmptyString(s2) != true {
+		t.Errorf("Expected %t to be true", IsEmptyString(s))
+	}
+
+	s3 := NewString("", false)
+	if IsEmptyString(s3) != true {
+		t.Errorf("Expected %t to be true", IsEmptyString(s))
+	}
+
+	s4 := NewString("dsfds", true)
+	if IsEmptyString(s4) == true {
+		t.Errorf("Expected %t to be false", IsEmptyString(s))
+	}
+}
