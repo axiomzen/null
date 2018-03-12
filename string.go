@@ -43,6 +43,12 @@ func NewString(s string, valid bool) String {
 	}
 }
 
+// IsEmptyString useful for when the value
+// needs to be check for zero
+func IsEmptyString(n String) bool {
+	return !n.Valid || n.String == ""
+}
+
 // UnmarshalJSON implements json.Unmarshaler.
 // It supports string and null input. Blank string input does not produce a null String.
 // It also supports unmarshalling a sql.NullString.
